@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mai Muhammad El-Dewek - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            scroll-behavior: smooth;
+        }
+        .section-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        .skill-badge {
+            transition: all 0.2s ease;
+        }
+        .skill-badge:hover {
+            background-color: #166534; /* Darker green on hover */
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Custom scrollbar for a polished look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#166534', // A deep green reminiscent of the original CV design
+                        secondary: '#e5e7eb',
+                        accent: '#22c55e'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-gray-800 antialiased selection:bg-primary selection:text-white pb-12">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-primary tracking-tight">Mai Muhammad El-Dewek</span>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8 items-center">
+                    <a href="#about" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                    <a href="#experience" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
+                    <a href="#education" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Education</a>
+                    <a href="#skills" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
+                    <button onclick="window.print()" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-800 transition-colors shadow-sm flex items-center gap-2">
+                        <i class="fas fa-print"></i> Print / PDF
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden hidden bg-white shadow-md absolute w-full" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">About</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Experience</a>
+                <a href="#education" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Education</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Skills</a>
+                <button onclick="window.print()" class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-gray-50">
+                    <i class="fas fa-print mr-2"></i> Print / PDF
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Sidebar (Contact & Profile) -->
+            <div class="lg:col-span-1 space-y-8">
+                
+                <!-- Profile Card -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 section-card text-center relative overflow-hidden" id="about">
+                    <div class="absolute top-0 left-0 w-full h-24 bg-primary opacity-10"></div>
+                    
+                    <!-- Profile Picture Container with Interactive Upload & Local Fallback -->
+                    <div class="relative w-40 h-40 mx-auto mb-4 group cursor-pointer" onclick="document.getElementById('profile-upload').click()" title="Click to upload/change photo">
+                        <img id="profile-img" src="profile.jpg" onerror="this.src='https://placehold.co/400x400/166534/ffffff?text=Mai+El-Dewek'; this.onerror=null;" alt="Mai Muhammad El-Dewek" class="rounded-full object-cover w-full h-full border-4 border-white shadow-lg z-10 relative">
+                        <div class="absolute inset-0 rounded-full ring-2 ring-primary ring-offset-2 animate-pulse" style="animation-duration: 3s;"></div>
+                        <!-- Upload Overlay -->
+                        <div class="absolute inset-0 rounded-full bg-black/50 z-20 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <i class="fas fa-camera text-2xl mb-1"></i>
+                            <span class="text-xs font-medium">Change Photo</span>
+                        </div>
+                    </div>
+                    <!-- Hidden File Input -->
+                    <input type="file" id="profile-upload" class="hidden" accept="image/*" onchange="handleImageUpload(event)">
+                    
+                    <h1 class="text-2xl font-bold text-gray-900 mb-1">Mai Muhammad El-Dewek</h1>
+                    <h2 class="text-sm font-semibold text-primary uppercase tracking-wider mb-4">Physics Teacher & STEAM Educator</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Experienced educator with a Faculty of Science background in Physics and Computer studies, a General Educational Diploma, and STEAM professional development. Brings strong classroom management, organization, communication, collaboration, and technology skills to student-centered learning environments.
+                    </p>
+                    
+                    <!-- Quick Actions -->
+                    <div class="flex justify-center gap-3 border-t pt-4">
+                        <button onclick="copyToClipboard('maimad85@yahoo.com', 'Email copied!')" class="p-2 text-gray-500 hover:text-primary hover:bg-green-50 rounded-full transition-colors" title="Copy Email">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                        <button onclick="copyToClipboard('056971125', 'Saudi Phone copied!')" class="p-2 text-gray-500 hover:text-primary hover:bg-green-50 rounded-full transition-colors" title="Copy Saudi Phone">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contact Info Card -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 section-card">
+                    <h3 class="text-lg font-semibold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                        <i class="fas fa-address-card text-primary mr-2"></i> Contact Details
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group cursor-pointer" onclick="copyToClipboard('maimad85@yahoo.com', 'Email copied!')">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-envelope text-gray-400 group-hover:text-primary transition-colors"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-xs font-medium text-gray-500 uppercase">Email</p>
+                                <p class="text-sm text-gray-800 group-hover:text-primary transition-colors">maimad85@yahoo.com</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start group cursor-pointer" onclick="copyToClipboard('056971125', 'Saudi Phone copied!')">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-mobile-alt text-gray-400 group-hover:text-primary transition-colors"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-xs font-medium text-gray-500 uppercase">Saudi Phone</p>
+                                <p class="text-sm text-gray-800 group-hover:text-primary transition-colors">056971125</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start group cursor-pointer" onclick="copyToClipboard('01224975677', 'Egypt Phone copied!')">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-phone-alt text-gray-400 group-hover:text-primary transition-colors"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-xs font-medium text-gray-500 uppercase">Egypt Phone</p>
+                                <p class="text-sm text-gray-800 group-hover:text-primary transition-colors">01224975677</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-map-marker-alt text-gray-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-xs font-medium text-gray-500 uppercase">Location</p>
+                                <p class="text-sm text-gray-800">Qassim, Saudi Arabia</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-flag text-gray-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-xs font-medium text-gray-500 uppercase">Nationality</p>
+                                <p class="text-sm text-gray-800">Egyptian</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Languages Card -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 section-card">
+                    <h3 class="text-lg font-semibold text-gray-900 border-b pb-2 mb-4 flex items-center">
+                        <i class="fas fa-language text-primary mr-2"></i> Languages
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-700 font-medium">Arabic</span>
+                                <span class="text-gray-500 text-xs">Excellent</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5">
+                                <div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-700 font-medium">English</span>
+                                <span class="text-gray-500 text-xs">Very Good</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5">
+                                <div class="bg-primary h-1.5 rounded-full opacity-80" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Experience Section -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 lg:p-8 section-card" id="experience">
+                    <h3 class="text-xl font-bold text-gray-900 border-b-2 border-primary pb-2 mb-6 flex items-center inline-block">
+                        <i class="fas fa-briefcase text-primary mr-3"></i> Professional Experience
+                    </h3>
+                    
+                    <div class="relative border-l-2 border-gray-200 ml-3 space-y-8">
+                        
+                        <!-- Experience Item 1 -->
+                        <div class="relative pl-6 group">
+                            <div class="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1 border-2 border-white group-hover:scale-125 transition-transform shadow-sm"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="text-lg font-bold text-gray-900">Physics Teacher</h4>
+                                <span class="text-sm font-semibold text-primary bg-green-50 px-3 py-1 rounded-full w-max mt-2 sm:mt-0">2023 - Present</span>
+                            </div>
+                            <h5 class="text-md font-medium text-gray-600 mb-2">Excellence International School - Saudi Arabia</h5>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Teaching Physics within an international-school environment, supported by strong classroom management, organization, communication, and student support skills.
+                            </p>
+                        </div>
+
+                        <!-- Experience Item 2 -->
+                        <div class="relative pl-6 group">
+                            <div class="absolute w-4 h-4 bg-gray-400 rounded-full -left-[9px] top-1 border-2 border-white group-hover:bg-primary group-hover:scale-125 transition-all shadow-sm"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="text-lg font-bold text-gray-900">Private Teaching</h4>
+                                <span class="text-sm font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full w-max mt-2 sm:mt-0">2017 - 2022</span>
+                            </div>
+                            <h5 class="text-md font-medium text-gray-600 mb-2">Saudi Arabia</h5>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Provided private educational support and individualized learning guidance.
+                            </p>
+                        </div>
+
+                        <!-- Experience Item 3 -->
+                        <div class="relative pl-6 group">
+                            <div class="absolute w-4 h-4 bg-gray-400 rounded-full -left-[9px] top-1 border-2 border-white group-hover:bg-primary group-hover:scale-125 transition-all shadow-sm"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="text-lg font-bold text-gray-900">Teacher</h4>
+                                <span class="text-sm font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full w-max mt-2 sm:mt-0">Previous Role</span>
+                            </div>
+                            <h5 class="text-md font-medium text-gray-600">Al Masarta International School - Saudi Arabia</h5>
+                        </div>
+
+                        <!-- Experience Item 4 -->
+                        <div class="relative pl-6 group">
+                            <div class="absolute w-4 h-4 bg-gray-400 rounded-full -left-[9px] top-1 border-2 border-white group-hover:bg-primary group-hover:scale-125 transition-all shadow-sm"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="text-lg font-bold text-gray-900">Teacher</h4>
+                                <span class="text-sm font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full w-max mt-2 sm:mt-0">1 Year</span>
+                            </div>
+                            <h5 class="text-md font-medium text-gray-600">Future Language School - Egypt</h5>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 lg:p-8 section-card" id="education">
+                    <h3 class="text-xl font-bold text-gray-900 border-b-2 border-primary pb-2 mb-6 flex items-center inline-block">
+                        <i class="fas fa-graduation-cap text-primary mr-3"></i> Education & Qualifications
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Edu Item -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-primary transition-colors">
+                            <div class="text-primary mb-2"><i class="fas fa-university fa-lg"></i></div>
+                            <h4 class="font-bold text-gray-900">Faculty of Science</h4>
+                            <p class="text-sm text-gray-600 font-medium">Ain Shams University</p>
+                            <p class="text-xs text-gray-500 mt-1">Physics & Computer Department</p>
+                            <div class="mt-3 inline-block bg-white px-2 py-1 rounded text-xs font-semibold text-gray-600 shadow-sm">Graduated 2005</div>
+                        </div>
+
+                        <!-- Edu Item -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-primary transition-colors">
+                            <div class="text-primary mb-2"><i class="fas fa-certificate fa-lg"></i></div>
+                            <h4 class="font-bold text-gray-900">General Educational Diploma</h4>
+                            <div class="mt-auto pt-4 inline-block bg-white px-2 py-1 rounded text-xs font-semibold text-gray-600 shadow-sm">2016</div>
+                        </div>
+
+                        <!-- Edu Item -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-primary transition-colors">
+                            <div class="text-primary mb-2"><i class="fas fa-flask fa-lg"></i></div>
+                            <h4 class="font-bold text-gray-900">STEAM Diploma</h4>
+                            <p class="text-sm text-gray-600 font-medium">American University in Cairo (AUC)</p>
+                            <div class="mt-3 inline-block bg-white px-2 py-1 rounded text-xs font-semibold text-gray-600 shadow-sm">2023 - 2024</div>
+                        </div>
+
+                        <!-- Edu Item -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-primary transition-colors">
+                            <div class="text-primary mb-2"><i class="fas fa-book-open fa-lg"></i></div>
+                            <h4 class="font-bold text-gray-900">English Course</h4>
+                            <p class="text-sm text-gray-600 font-medium">British Council</p>
+                            <div class="mt-3 inline-block bg-white px-2 py-1 rounded text-xs font-semibold text-gray-600 shadow-sm">2018</div>
+                        </div>
+                        
+                        <!-- Edu Item -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-primary transition-colors">
+                            <div class="text-primary mb-2"><i class="fas fa-spell-check fa-lg"></i></div>
+                            <h4 class="font-bold text-gray-900">Advanced Grammar & Vocabulary</h4>
+                            <div class="mt-3 inline-block bg-white px-2 py-1 rounded text-xs font-semibold text-gray-600 shadow-sm">2020 and 2022</div>
+                        </div>
+
+                        <!-- Edu Item -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-primary transition-colors">
+                            <div class="text-primary mb-2"><i class="fas fa-laptop-code fa-lg"></i></div>
+                            <h4 class="font-bold text-gray-900">ICDL Certificate</h4>
+                            <div class="mt-3 inline-block bg-white px-2 py-1 rounded text-xs font-semibold text-gray-600 shadow-sm">2008</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="bg-white rounded-2xl shadow-sm p-6 lg:p-8 section-card" id="skills">
+                    
+                    <!-- Core Strengths -->
+                    <h3 class="text-xl font-bold text-gray-900 border-b-2 border-primary pb-2 mb-6 flex items-center inline-block">
+                        <i class="fas fa-star text-primary mr-3"></i> Core Strengths
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Classroom Management
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Classroom Organization
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Student & Parent Communication
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Collaboration & Coaching
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Computer Skills
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Organization & Attention to Detail
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Working Under Pressure
+                        </div>
+                        <div class="flex items-center text-gray-700 bg-green-50/50 p-2 rounded-lg border border-green-100">
+                            <i class="fas fa-check-circle text-primary mr-2 text-sm"></i> Creativity & Self-Motivation
+                        </div>
+                    </div>
+
+                    <!-- Professional Skills Tags -->
+                    <h3 class="text-lg font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4">Professional Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Classroom Management</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Childcare</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Coaching</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Collaboration</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Communication</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Student Support</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Parent Communication</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Work Ethics</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">MS Word</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">MS Excel</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Internet Skills</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Fast Learner</span>
+                        <span class="skill-badge px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-md cursor-default border border-gray-200">Creative Thinking</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification for Copy Actions -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl z-50 flex items-center gap-3">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span id="toast-message" class="text-sm font-medium">Copied!</span>
+    </div>
+
+    <script>
+        // Mobile menu toggle logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Copy to clipboard with toast notification
+        let toastTimeout;
+        function copyToClipboard(text, successMessage) {
+            // Create a temporary textarea to copy text
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            // Avoid scrolling to bottom
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast(successMessage);
+                } else {
+                    showToast('Failed to copy text', true);
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                showToast('Failed to copy text', true);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Show Toast Notification
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            const icon = toast.querySelector('i');
+            
+            toastMessage.textContent = message;
+            
+            if (isError) {
+                icon.className = 'fas fa-exclamation-circle text-red-400';
+            } else {
+                icon.className = 'fas fa-check-circle text-green-400';
+            }
+            
+            // Show toast
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            // Clear existing timeout
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // Hide toast after 3 seconds
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Handle Profile Image Upload and Persistence
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageDataUrl = e.target.result;
+                    document.getElementById('profile-img').src = imageDataUrl;
+                    try {
+                        localStorage.setItem('mai_profile_image', imageDataUrl);
+                        showToast('Profile photo updated!');
+                    } catch(err) {
+                        showToast('Photo displayed!');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Restore saved profile image on page load if present in localStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedImage = localStorage.getItem('mai_profile_image');
+            if (savedImage) {
+                const profileImg = document.getElementById('profile-img');
+                if (profileImg) profileImg.src = savedImage;
+            }
+        });
+
+        // Add active state to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('div[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('text-primary', 'font-bold');
+                a.classList.add('text-gray-500', 'font-medium');
+                if (a.getAttribute('href').includes(current) && current !== '') {
+                    a.classList.remove('text-gray-500', 'font-medium');
+                    a.classList.add('text-primary', 'font-bold');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
